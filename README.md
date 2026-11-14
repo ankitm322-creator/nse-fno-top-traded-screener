@@ -1,71 +1,16 @@
-# NSE F&O Top Traded Value Screener
+## Android app
 
-A simple market screener for NSE F&O stocks ranked by traded value using the FYERS API. It renders a live list of major F&O names and auto-refreshes every minute.
+A native Kotlin/Jetpack Compose client is available in the `android/` directory. It connects to the Node API at `/api/top-traded-fno`, shows the ranked stock list, supports symbol search, and refreshes once per minute.
 
-## Features
+### Run in Android Studio
 
-- Top traded value screener for NSE F&O symbols
-- FYERS live data integration
-- Demo fallback mode when API credentials are missing
-- Search/filter by symbol
-- Refresh button and auto-refresh every 60 seconds
-- Clean single-page dashboard
+1. Start the Node server from the repository root with `npm install` and `npm start`.
+2. Open the `android/` directory in Android Studio and let Gradle sync.
+3. Run the `app` configuration on an emulator. The default API address `http://10.0.2.2:3000` reaches the host computer from the Android emulator.
+4. On a physical phone, use **API setup** in the app to enter your computer's LAN URL (for example `http://192.168.1.5:3000`) or a deployed HTTPS API URL. The phone and computer must be on the same network for a LAN URL.
 
-## Quick start
+The app stores the API base URL on the device. It does not contain FYERS credentials; keep those on the Node backend. Plain HTTP is enabled for local development only—use HTTPS for a deployed server.
 
-1. Install dependencies:
+### Build APK
 
-   npm install
-
-2. Copy the environment file:
-
-   cp .env.example .env
-
-3. Add your FYERS credentials:
-
-   FYERS_APP_ID=YOUR_APP_ID
-   FYERS_ACCESS_TOKEN=YOUR_ACCESS_TOKEN
-
-4. Start the app:
-
-   npm start
-
-5. Open:
-
-   http://localhost:3000
-
-## FYERS API notes
-
-This app expects a valid FYERS app ID and access token. The app uses the FYERS market quotes endpoint and sorts results by traded value descending.
-
-If the credentials are missing or the API call fails, the app automatically falls back to demo mock data so the dashboard keeps working.
-
-## Project structure
-
-- `server.js` – Express backend and FYERS integration
-- `public/index.html` – dashboard shell
-- `public/styles.css` – custom styling
-- `public/app.js` – frontend rendering logic
-
-## Important
-
-- Never commit real credentials to GitHub.
-- Keep your `.env` file outside version control.
-- This is a sample screener for educational and app-planning use; always validate with your own FYERS account and risk rules.
-
-## Example live usage
-
-Try using a watchlist of major stock symbols such as:
-
-- RELIANCE
-- TCS
-- INFY
-- HDFCBANK
-- ICICIBANK
-- SBIN
-- ITC
-- LTIM
-- AXISBANK
-- BHARTIARTL
-
-The screener sorts by traded value and updates in real time when the FYERS token is valid.
+In Android Studio, select **Build → Build Bundle(s) / APK(s) → Build APK(s)**. The generated debug APK is under `android/app/build/outputs/apk/debug/`.
