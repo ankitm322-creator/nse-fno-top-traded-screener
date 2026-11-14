@@ -1,0 +1,25 @@
+{
+  "name": "nse-fno-top-traded-screener",
+  "version": "1.0.0",
+  "description": "FYERS-based NSE F&O screener ranked by traded value",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": [
+    "nse",
+    "fno",
+    "stocks",
+    "screener",
+    "fyers",
+    "market-data"
+  ],
+  "author": "ankitm322-creator",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.7.9",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.2"
+  }
+}
